@@ -1,1 +1,9 @@
 .DS_Store
+analytics/__pycache__/**
+terraform/.terraform/**
+terraform/.terraform.lock.hcl
+terraform/.terraform.tfstate.lock.info
+terraform/terraform.tfstate
+terraform/solution.plan
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
