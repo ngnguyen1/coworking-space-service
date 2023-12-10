@@ -1,0 +1,16 @@
+version: 0.2
+env:
+  variables:
+    IMAGE_REPO_NAME: project3-ecr
+    IMAGE_TAG: latest
+phases:
+  pre_build:
+    commands:
+      - echo Logging ECR
+  build:
+    commands:
+      - echo Start build at `date` ...
+  post_build:
+    commands:
+      - echo Completed build at `date`
+      - echo Pushing image...
