@@ -12,6 +12,8 @@ eks_deploy:
 	sh ./.bin/eks_deploy.sh
 expose:
 	sh ./.bin/expose.sh
+cloudwatch:
+	sh ./.bin/cloud_watch_metrics_eks.sh
 terraform_destroy:
 	sh ./.bin/tf_destroy.sh
 
