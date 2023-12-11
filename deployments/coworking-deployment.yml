@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: backend-server
+  name: backend-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend-server
+  template:
+    metadata:
+      labels:
+        service: backend-server
+    spec:
+      containers:
+        - image: 741826000020.dkr.ecr.us-east-1.amazonaws.com/project3-ecr:latest
+          name: backend-server
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5153
+          resources:
+            requests:
+              memory: "1000Mi"
+              cpu: "250m"
+            limits:
+              memory: "2000Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /readiness_check
+              port: 5153
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health_check
+              port: 5153
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+          envFrom:
+            - secretRef:
+                name: env-secret
+            - configMapRef:
+                name: env-config
+      restartPolicy: Always
